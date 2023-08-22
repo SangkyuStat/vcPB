@@ -16,11 +16,11 @@ devtools::install_github("SangkyuStat/vcPB")
 
 If `modifier` is `NULL` (the default setting is `NULL`) and at least a time-varying variable exists, then the simple varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:
 ```R
-vc.pb(formula = response ~ (time varying variable | time variable) + variable, data = input data, group = disparity_group)
+vc.pb(formula = response ~ (time varying variable | time variable) + variable, data = input_data, group = disparity_group)
 ```
 If `modifier` is not `NULL` and is a discrete variable, and at least a time-varying variable exists, then the modifiable varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:
 ```R
-vc.pb(formula = response ~ (time varying variable | time variable) + variable + discrete variable, data = input_ _data, group = disparity_group, modifier = "discrete variable")
+vc.pb(formula = response ~ (time varying variable | time variable) + variable + discrete variable, data = input_data, group = disparity_group, modifier = "discrete variable")
 ```
 If `modifier` is not `NULL` and is a continuous variable, and at least a time-varying variable exists, then the simple varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:
 ```R
