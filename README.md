@@ -6,7 +6,7 @@ Furthermore, our method can set a modifiable variable to find the complicated as
 ### Installation
 
 The current version can be installed from source using the package `devtools`
-```
+```R
 devtools::install_github("SangkyuStat/vcPB")
 ```
 
@@ -15,15 +15,15 @@ devtools::install_github("SangkyuStat/vcPB")
 `vc.pb` function provides three different types of models based on the different input arguments: `modifier` and time varying coefficients. The user needs to define `group` properly to measure the disparity between two groups in `group` variable, there should be 2 levels for this variable. 
 
 If `modifier` is `NULL` (the default setting is `NULL`) and at least a time-varying variable exists, then the simple varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:
-```
+```R
 vc.pb(formula = response ~ (time varying variable | time variable) + variable, data = input data, group = disparity_group)
 ```
 If `modifier` is not `NULL` and is a discrete variable, and at least a time-varying variable exists, then the modifiable varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:
-```
+```R
 vc.pb(formula = response ~ (time varying variable | time variable) + variable + discrete variable, data = input_ _data, group = disparity_group, modifier = "discrete variable")
 ```
 If `modifier` is not `NULL` and is a continuous variable, and at least a time-varying variable exists, then the simple varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:
-```
+```R
 vc.pb(formula = response ~ (time varying variable | time variable) + variable + continuous variable, data = input_data, group = disparity_group, modifier = "continuous variable")
 ```
 The type of modifier returns the different results.
