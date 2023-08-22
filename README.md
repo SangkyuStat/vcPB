@@ -1,4 +1,7 @@
 # vcPB: Varying Coefficient Peters-Belson Method for Longitudinal Data
+
+[![R-CMD-check](https://github.com/SangkyuStat/vcPB/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/SangkyuStat/vcPB/actions/workflows/R-CMD-check.yaml)
+
 A package for for estimating the disparity between a majority group and minority group based on the extended model of the Peters-Belson method. Our model is the first extension of Peters-Belson method to the longitudinal data. 
 
 Furthermore, our method can set a modifiable variable to find the complicated association between other variables and the modifiable variable.
