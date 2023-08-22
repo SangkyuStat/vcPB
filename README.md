@@ -4,12 +4,14 @@ A package for for estimating the disparity between a majority group and minority
 Furthermore, our method can set a modifiable variable to find the complicated association between other variables and the modifiable variable.
 
 ### Installation
+
 The current version can be installed from source using the package `devtools`
 ```
 devtools::install_github("SangkyuStat/vcPB")
 ```
 
 ### Usage Examples
+
 `vc.pb` function provides three different types of models based on the different input arguments.
 
 
