@@ -12,7 +12,7 @@ devtools::install_github("SangkyuStat/vcPB")
 
 ### Usage Examples
 
-`vc.pb` function provides three different types of models based on the different input arguments: `modifier` and time varying coefficients. The user needs to define `group` properly to measure the disparity between two groups in `group` variable, there should be 2 levels for this variable. 
+`vc.pb` function provides three different types of models based on the different input arguments: `modifier` and time varying coefficients. 
 
 If `modifier` is `NULL` (the default setting is `NULL`) and at least a time-varying variable exists, then the simple varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:
 ```R
@@ -32,7 +32,11 @@ vc.pb(formula = response ~ (time varying variable1 | time variable) + (time vary
 ```
 the user has to indicate whether the variable is time-varying or not.
 
+The user needs to define `group` properly to measure the disparity between two groups in `group` variable, there should be 2 levels for this variable. 
+
 The selection of bandwidths is essential and important for the kernel regression. If there is nothing given as initial values, we get and use the default marginal bandwidth from the function `KernSmooth::dpill`. For all models, `bandwidth_M`, `bandwidth_m`, `bandwidth_xM` and `bandwidth_xm` are essential. If `modifier` is not `NULL` and is a continuous variable, then `bandwidth_Z_M`, `bandwidth_Z_m`, `bandwidth_Z_xM` and `bandwidth_Z_xm` are needed more.
+
+Also, use needs to specify local time points (`local_time`) for the time-varying kernel regression. The function will automatically give the time points if there is nothing given. The local time points will be returned in the fitted object.
 
 ### Developing
 
