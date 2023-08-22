@@ -1,6 +1,6 @@
 Package: vcPB
 Type: Package
-Title: vcPB: Longitudinal Varying-Coefficient Health Disparity Model based on Peters-Belson Estimation
+Title: Longitudinal Varying-Coefficient Health Disparity Model based on Peters-Belson Estimation
 Version: 1.0.0
 Authors@R: c(
     person("Sang Kyu", "Lee", role = c("aut", "cre"), email = "lsk0816@gmail.com"),
