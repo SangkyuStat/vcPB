@@ -26,7 +26,11 @@ If `modifier` is not `NULL` and is a continuous variable, and at least a time-va
 ```R
 vc.pb(formula = response ~ (time varying variable | time variable) + variable + continuous variable, data = input_data, group = disparity_group, modifier = "continuous variable")
 ```
-The type of modifier returns the different results.
+The type of modifier returns the different results. If there are more than one time-varying variables, the user can perform the function as below:
+```R
+vc.pb(formula = response ~ (time varying variable1 | time variable) + (time varying variable2 | time variable) + variable, data = input_data, group = disparity_group)
+```
+the user has to indicate whether the variable is time-varying or not.
 
 The selection of bandwidths is essential and important for the kernel regression. If there is nothing given as initial values, we get and use the default marginal bandwidth from the function `KernSmooth::dpill`. For all models, `bandwidth_M`, `bandwidth_m`, `bandwidth_xM` and `bandwidth_xm` are essential. If `modifier` is not `NULL` and is a continuous variable, then `bandwidth_Z_M`, `bandwidth_Z_m`, `bandwidth_Z_xM` and `bandwidth_Z_xm` are needed more.
 
