@@ -10,5 +10,6 @@ License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.2.3
-URL: https://github.com/SangkyuStat/vcPB
+URL: https://github.com/SangkyuStat/vcPB,
+    https://sangkyustat.github.io/vcPB/
 BugReports: https://github.com/SangkyuStat/vcPB/issues
