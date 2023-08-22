@@ -1,0 +1,12 @@
+Package: vcPB
+Type: Package
+Title: vcPB: Longitudinal Varying-Coefficient Health Disparity Model based on Peters-Belson Estimation
+Version: 1.0.0
+Author: Sang Kyu Lee <lsk0816@gmail.com>, Seonjin Kim <kims20@miamioh.edu>
+Maintainer: Sang Kyu Lee <lsk0816@gmail.com>
+Description: Our package is used for estimating the disparity between a majority group and minority group based on the extended model of the Peters-Belson method. Our model is the first work on the longitudinal data, and also can set a varying variable to find the compliated association between other variables and the varying variable.
+Depends: KernSmooth, rlist, lme4, methods
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.2.3
