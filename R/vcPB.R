@@ -937,3 +937,121 @@ time.disparity = function(yM, xM, ym, xm,
   res_list$names = colnames(xM_model)
   res_list
 }
+
+#' Peters-Belson Disparity Analysis
+#'
+#' Function \code{pb} offers Peters-Belson(PB) type of regression method which gets the disparity between a majority group
+#' and a minority group based on various regression models.
+#' @param formula a formula for the model.
+#' @param group a vector within the \code{data} which is used for separating majority and minority groups.
+#' @param data a data frame and data has to be included with the form of \code{data.frame}.
+#' @param family a character indicating which model should be used. Details can be found later.
+#' @return \code{pb} returns an object of class \code{"pb"}, which is a list containing
+#' following components:
+#' @return
+#' \item{call}{a matched call.}
+#' \item{overall_disparity}{overall disparity between major and minor groups.}
+#' \item{explained_disparity}{explained disparity between major and minor groups.}
+#' \item{unexplained_disparity}{unexplained disparity between major and minor groups.}
+#' \item{major}{a majority group label.}
+#' \item{minor}{a minority group label.}
+#' @export
+pb <-function(formula, group, data, family="gaussian")
+{
+  cl <- match.call()
+  mf <- match.call(expand.dots = FALSE)
+
+  m <- match(c("formula", "group", "data"), names(mf), 0)
+
+  mf <- mf[c(1, m)]
+  mf$drop.unused.levels <- TRUE
+  mf$na.action <- na.pass
+  mf[[1]] <- quote(model.frame)
+  names(mf)[2] <- "formula"
+  mf <- eval(mf, parent.frame())
+  mt <- attr(mf, "terms")
+
+  group <- model.extract(mf, "group")
+  disparity.var <- colnames(group)
+  disparity.group <- levels(as.factor(model.extract(mf, "group")))
+  major <- disparity.group[1]
+  minor <- disparity.group[2]
+
+  yM <- model.response(mf, "numeric")[group == disparity.group[1]]
+  xM <- model.matrix(mt, mf, contrasts.arg = NULL, xlev = NULL)[group == disparity.group[1],]
+  ym <- model.response(mf, "numeric")[group == disparity.group[2]]
+  xm <- model.matrix(mt, mf, contrasts.arg = NULL, xlev = NULL)[group == disparity.group[2],]
+
+  completeM <- complete.cases(xM) & complete.cases(yM)
+  completem <- complete.cases(xm) & complete.cases(ym)
+
+  if(sum(!completeM) > 0 | sum(!completem) > 0){
+    xM <- xM[completeM,]
+    xm <- xm[completem,]
+    yM <- yM[completeM]
+    ym <- ym[completem]
+    warning("The data is not complete, the missing observations are ignored.")
+  }
+
+  xM <- xM[,-1]
+  xm <- xm[,-1]
+
+  fitted <- pb.fit(yM = yM, xM = xM, ym = ym, xm = xm, var.equal = T)
+
+  res <- list(
+    call = cl,
+    overall_disparity = drop(fitted$all_disparity),
+    explained_disparity = drop(fitted$explained),
+    unexplained_disparity = drop(fitted$unexplained),
+    major = major,
+    minor = minor
+  )
+  class(res) = "pb"
+  res
+}
+
+#' @method print pb
+#' @export
+print.pb <- function(x, digits = max(3, getOption("digits") - 3), ...){
+  cat("\nCall:\n")
+  print(x$call)
+  cat("\nGroup variable:\n\n")
+  cat("Major:", x$major,"\n")
+  cat("Minor:", x$minor,"\n")
+  cat("\n    Overall Disparity: ")
+  cat(round(x$overall_disparity, digits = digits))
+  cat("\n  Explained Disparity: ")
+  cat(round(x$explained_disparity, digits = digits))
+  cat("\nUnexplained Disparity: ")
+  cat(round(x$unexplained_disparity, digits = digits))
+  cat("\n\n")
+}
+
+
+pb.fit <- function(yM, xM, ym, xm, var.equal = T){
+  Mfit.coef <- lm(yM ~ xM)$coefficients
+  mfit.coef <- lm(ym ~ xm)$coefficients
+
+  if(!is.matrix(xM) | !is.matrix(xm)){
+    xM <- as.matrix(xM)
+    xm <- as.matrix(xm)
+  }
+  if(dim(xM)[2] > 1){
+    bar.xM <- colMeans(xM)
+    bar.xm <- colMeans(xm)
+  } else {
+    bar.xM <- mean(xM)
+    bar.xm <- mean(xm)
+  }
+
+  explained <- cbind(1, (bar.xM - bar.xm)) %*% Mfit.coef
+  unexplained <- cbind(1, bar.xm) %*% (Mfit.coef - mfit.coef)
+  all_disparity <- explained + unexplained
+
+  res = list(
+    all_disparity = all_disparity,
+    explained = explained,
+    unexplained = unexplained
+  )
+  res
+}
