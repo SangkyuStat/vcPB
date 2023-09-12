@@ -1,4 +1,5 @@
 url: https://sangkyustat.github.io/vcPB/
 template:
   bootstrap: 3
-
+development:
+  mode: auto
