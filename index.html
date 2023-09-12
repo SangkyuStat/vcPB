@@ -91,15 +91,21 @@
 <p>The user needs to define <code>group</code> properly to measure the disparity between two groups in <code>group</code> variable, there should be 2 levels for this variable.</p>
 <p>The selection of bandwidths is essential and important for the kernel regression. If there is nothing given as initial values, we get and use the default marginal bandwidth from the function <code><a href="https://rdrr.io/pkg/KernSmooth/man/dpill.html" class="external-link">KernSmooth::dpill</a></code>. For all models, <code>bandwidth_M</code>, <code>bandwidth_m</code>, <code>bandwidth_xM</code> and <code>bandwidth_xm</code> are essential. If <code>modifier</code> is not <code>NULL</code> and is a continuous variable, then <code>bandwidth_Z_M</code>, <code>bandwidth_Z_m</code>, <code>bandwidth_Z_xM</code> and <code>bandwidth_Z_xm</code> are needed more.</p>
 <p>Also, use needs to specify local time points (<code>local_time</code>) for the time-varying kernel regression. The function will automatically give the time points if there is nothing given. The local time points will be returned in the fitted object.</p>
+<p><code>pb</code> function provides the original Peters-Belson method of Peters (1941) and Belson (1956). The usage is as similar as the <code>vc.pb</code> but the user should not put the time varying coefficients.</p>
 </div>
 <div class="section level3">
 <h3 id="developing">Developing<a class="anchor" aria-label="anchor" href="#developing"></a>
 </h3>
 <ul>
 <li>The cross-validation function for choosing the bandwidths will be developed.</li>
-<li>The original PB method will be included in the package.</li>
 <li>We are trying to develop other methods as well.</li>
 </ul>
+</div>
+<div class="section level3">
+<h3 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
+</h3>
+<p>Peters, C. C. (1941) A method of matching groups for experiment with no loss of population. Journal of Educational Research, 34, 606-612.</p>
+<p>Belson, W. A. (1956) A Technique for Studying the Effects of a Television Broadcast. JRSSC, 5(3), 195-202.</p>
 </div>
 </div>
   </div>
