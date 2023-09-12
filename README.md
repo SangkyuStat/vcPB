@@ -41,8 +41,16 @@ The selection of bandwidths is essential and important for the kernel regression
 
 Also, use needs to specify local time points (`local_time`) for the time-varying kernel regression. The function will automatically give the time points if there is nothing given. The local time points will be returned in the fitted object.
 
+`pb` function provides the original Peters-Belson method of Peters (1941) and Belson (1956). The usage is as similar as the `vc.pb` but the user should not put the time varying coefficients.
+
 ### Developing
 
 - The cross-validation function for choosing the bandwidths will be developed.
-- The original PB method will be included in the package.
 - We are trying to develop other methods as well.
+
+### References
+
+Peters, C. C. (1941) A method of matching groups for experiment with no loss of population. Journal of Educational Research, 34, 606-612.
+
+Belson, W. A. (1956) A Technique for Studying the Effects of a Television 
+Broadcast.  JRSSC, 5(3), 195-202.
