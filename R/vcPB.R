@@ -272,8 +272,10 @@ print.vc.pb <- function(x, digits = max(3, getOption("digits") - 3), ...){
     colnames(result.mat) <- paste0("t = ", round(x$times[idx],  digits = digits))
     # rownames(result.mat) <- c("       Overall Disparity: ", "Explained Disparity by Z: ",
     #                           "Explained Disparity by X: ", "   Unexplained Disparity: ")
-    rownames(result.mat) <- c("                  Overall Disparity: ", "Explained Disparity by the modifier: ",
-                              "           Explained Disparity by X: ", "              Unexplained Disparity: ")
+    rownames(result.mat) <- c("                  Overall Disparity: ",
+                              "Explained Disparity by the modifier: ",
+                              "           Explained Disparity by X: ",
+                              "              Unexplained Disparity: ")
     cat("\nDisparity Summary Results:\n\n")
     # cat("\nDisparity Summary Results:\n")
     # cat("\n                         ", paste0("t = ", round(x$times[idx],  digits = digits)))
@@ -292,7 +294,8 @@ print.vc.pb <- function(x, digits = max(3, getOption("digits") - 3), ...){
   } else {
     result.mat <- matrix(0, ncol = length(idx), nrow = 3)
     colnames(result.mat) <- paste0("t = ", round(x$times[idx],  digits = digits))
-    rownames(result.mat) <- c("    Overall Disparity: ", "  Explained Disparity: ",
+    rownames(result.mat) <- c("    Overall Disparity: ",
+                              "  Explained Disparity: ",
                               "Unexplained Disparity: ")
     cat("\nDisparity Summary Results:\n\n")
     # cat("\n                      ", paste0("t = ", round(x$times[idx],  digits = digits)))
