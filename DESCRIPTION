@@ -3,8 +3,8 @@ Type: Package
 Title: Longitudinal Varying-Coefficient Health Disparity Model based on Peters-Belson Estimation
 Version: 1.0.1
 Authors@R: c(
-    person("Sang Kyu", "Lee", role = c("aut", "cre"), email = "lsk0816@gmail.com"),
-    person("Seonjin", "Kim", role = "aut", email = "kims20@miamioh.edu")
+    person(" ", " ", role = c("aut", "cre"), email = "lsk0816@gmail.com"),
+    person(" ", " ", role = "aut", email = "kims20@miamioh.edu")
     )
 Description: Our package is used for estimating the disparity between a majority group and minority group based on the extended model of the Peters-Belson method. Our model is the first work on the longitudinal data, and also can set a varying variable to find the complicated association between other variables and the varying variable. Our work is an extension of the extension of the Peters-Belson method which were originally published in Peters (1941)<doi:10.1080/00220671.1941.10881036> and Belson (1956)<doi:10.2307/2985420>.
 Depends: KernSmooth, rlist, lme4, methods
