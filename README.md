@@ -23,25 +23,29 @@ vc.pb(formula = response ~ (time varying variable | time variable) + variable, d
 ```
 If `modifier` is not `NULL` and is a discrete variable, and at least a time-varying variable exists, then the modifiable varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:
 ```R
-vc.pb(formula = response ~ (time varying variable | time variable) + variable + discrete variable, data = input_data, group = disparity_group, modifier = "discrete variable")
+vc.pb(formula = response ~ (time varying variable | time variable) + variable + discrete modifier, data = input_data, group = disparity_group, modifier = "discrete modifier")
 ```
 If `modifier` is not `NULL` and is a continuous variable, and at least a time-varying variable exists, then the simple varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:
 ```R
-vc.pb(formula = response ~ (time varying variable | time variable) + variable + continuous variable, data = input_data, group = disparity_group, modifier = "continuous variable")
+vc.pb(formula = response ~ (time varying variable | time variable) + variable + continuous modifier, data = input_data, group = disparity_group, modifier = "continuous modifier")
 ```
 The type of modifier returns the different results. If there are more than one time-varying variables, the user can perform the function as below:
 ```R
 vc.pb(formula = response ~ (time varying variable1 | time variable) + (time varying variable2 | time variable) + variable, data = input_data, group = disparity_group)
 ```
-the user has to indicate whether the variable is time-varying or not.
+the user has to indicate whether the variable is time-varying or not. If there is no time-varying variable, then user can perform the function as below:
+```R
+vc.pb(formula = response ~ variable + any modifier, data = input_data, group = disparity_group, modifier = "any modifier")
+```
+If there is no modifier and time-varying variable, then the model is just the naive PB model. For this case, the user can use `pb` function instead.
+
+`pb` function provides the original Peters-Belson method of Peters (1941) and Belson (1956). The usage is as similar as the `vc.pb` but the user should not put the time varying coefficients and a modifier variable.
 
 The user needs to define `group` properly to measure the disparity between two groups in `group` variable, there should be 2 levels for this variable. 
 
 The selection of bandwidths is essential and important for the kernel regression. If there is nothing given as initial values, we get and use the default marginal bandwidth from the function `KernSmooth::dpill`. For all models, `bandwidth_M`, `bandwidth_m`, `bandwidth_xM` and `bandwidth_xm` are essential. If `modifier` is not `NULL` and is a continuous variable, then `bandwidth_Z_M`, `bandwidth_Z_m`, `bandwidth_Z_xM` and `bandwidth_Z_xm` are needed more.
 
 Also, use needs to specify local time points (`local_time`) for the time-varying kernel regression. The function will automatically give the time points if there is nothing given. The local time points will be returned in the fitted object.
-
-`pb` function provides the original Peters-Belson method of Peters (1941) and Belson (1956). The usage is as similar as the `vc.pb` but the user should not put the time varying coefficients.
 
 ### Developing
 
