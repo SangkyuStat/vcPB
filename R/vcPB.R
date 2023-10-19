@@ -508,7 +508,7 @@ time.disparity.varying.discrete = function(yM, xM, ym, xm, varying, varying_X,
 
       for(i in 1:length(qx))
       {
-        kernel_m = dnorm((time_m_temp - qx[i])/ifelse(h == q, bandwidth_M_temp, bandwidth_m_temp))
+        kernel_m = dnorm((time_m_temp - qx[i])/ifelse(h == k, bandwidth_M_temp, bandwidth_m_temp))
         hatcoeffm[i,] = lm(ym ~. , data = data.frame(ym = as.numeric(ym_temp), xm_temp),
                            weights=kernel_m)$coefficient
       }
