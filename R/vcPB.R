@@ -70,7 +70,7 @@ vc.pb <-function(formula, group, data, modifier = NULL,
   mf2[[1]] <- quote(model.frame)
   mf2$formula <- formula(paste("~", paste0(vf, collapse = "+")))
   mf2 <- eval(mf2, parent.frame())
-  vayingX <- names(mf2)
+  varyingX <- names(mf2)
 
   mf3 <- mf[c(1, m2)]
   mf3$drop.unused.levels <- TRUE
@@ -127,7 +127,7 @@ vc.pb <-function(formula, group, data, modifier = NULL,
                              ym = ym, xm = xm,
                              time_M = timeM, time_m = timem,
                              qx = local_time,
-                             varying_X = vayingX,
+                             varying_X = varyingX,
                              bandwidth_m = bandwidth_m,
                              bandwidth_M = bandwidth_M,
                              bandwidth_xm = bandwidth_xm,
@@ -152,14 +152,14 @@ vc.pb <-function(formula, group, data, modifier = NULL,
                                                 bandwidth_M = bandwidth_M,
                                                 bandwidth_xm = bandwidth_xm,
                                                 bandwidth_xM = bandwidth_xM,
-                                                varying_X = vayingX,
+                                                varying_X = varyingX,
                                                 varying = modifier)
     } else if((is.integer(modm) & is.integer(modM)) | (is.numeric(modm) & is.numeric(modM))){
       fitted <- time.disparity.varying.continuous(yM = yM, xM = xM,
                                                   ym = ym, xm = xm,
                                                   time_M = timeM, time_m = timem,
                                                   qx = local_time,
-                                                  varying_X = vayingX,
+                                                  varying_X = varyingX,
                                                   bandwidth1_m = bandwidth_m,
                                                   bandwidth1_M = bandwidth_M,
                                                   bandwidth1_xm = bandwidth_xm,
