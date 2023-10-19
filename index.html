@@ -82,8 +82,7 @@
 <h3 id="usage-examples">Usage Examples<a class="anchor" aria-label="anchor" href="#usage-examples"></a>
 </h3>
 <div class="section level4">
-<h4 id="vcpb">
-<code>vc.pb</code><a class="anchor" aria-label="anchor" href="#vcpb"></a>
+<h4 id="id_--vcpb-function">- <code>vc.pb</code> function<a class="anchor" aria-label="anchor" href="#id_--vcpb-function"></a>
 </h4>
 <p><code>vc.pb</code> function provides three different types of models based on the different input arguments: <code>modifier</code> and time varying coefficients.</p>
 <p>If <code>modifier</code> is <code>NULL</code> (the default setting is <code>NULL</code>) and at least a time-varying variable exists, then the simple varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:</p>
@@ -123,8 +122,7 @@
 <p>Also, use needs to specify local time points (<code>local_time</code>) for the time-varying kernel regression. The function will automatically give the time points if there is nothing given. The local time points will be returned in the fitted object.</p>
 </div>
 <div class="section level4">
-<h4 id="pb">
-<code>pb</code><a class="anchor" aria-label="anchor" href="#pb"></a>
+<h4 id="id_--pb-function">- <code>pb</code> function<a class="anchor" aria-label="anchor" href="#id_--pb-function"></a>
 </h4>
 <p><code>pb</code> function provides the original Peters-Belson method of Peters (1941) and Belson (1956). The usage is as similar as the <code>vc.pb</code> but the user should not put the time varying coefficients and a modifier variable.</p>
 </div>
