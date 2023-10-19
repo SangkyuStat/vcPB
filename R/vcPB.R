@@ -479,7 +479,7 @@ time.disparity.varying.discrete = function(yM, xM, ym, xm, varying, varying_X,
               bandwidth_xM_temp <- ifelse(is.null(bandwidth_xM), 3*KernSmooth::dpill(x = time_M_temp, y = xM_model[,j]), bandwidth_xM[which(varying_coef_model_idx %in% j)])
               bandwidth_xm_temp <- ifelse(is.null(bandwidth_xm), 3*KernSmooth::dpill(x = time_m_temp, y = xm_model[,j]), bandwidth_xm[which(varying_coef_model_idx %in% j)])
             }
-            kernel_mm = dnorm((time_m_temp - qx[i])/ifelse(h == q, bandwidth_xM_temp, bandwidth_xm_temp))
+            kernel_mm = dnorm((time_m_temp - qx[i])/ifelse(h == k, bandwidth_xM_temp, bandwidth_xm_temp))
           }
 
           if(j %in% cat_idx){
