@@ -81,6 +81,10 @@
 <div class="section level3">
 <h3 id="usage-examples">Usage Examples<a class="anchor" aria-label="anchor" href="#usage-examples"></a>
 </h3>
+<div class="section level4">
+<h4 id="vcpb">
+<code>vc.pb</code><a class="anchor" aria-label="anchor" href="#vcpb"></a>
+</h4>
 <p><code>vc.pb</code> function provides three different types of models based on the different input arguments: <code>modifier</code> and time varying coefficients.</p>
 <p>If <code>modifier</code> is <code>NULL</code> (the default setting is <code>NULL</code>) and at least a time-varying variable exists, then the simple varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vc.pb</span>(<span class="at">formula =</span> response <span class="sc">~</span> (time varying variable <span class="sc">|</span> time variable) <span class="sc">+</span> </span>
@@ -114,10 +118,16 @@
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">group =</span> disparity_group, </span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">modifier =</span> <span class="st">"any modifier"</span>)</span></code></pre></div>
 <p>If there is no modifier and time-varying variable, then the model is just the naive PB model. For this case, the user can use <code>pb</code> function instead.</p>
-<p><code>pb</code> function provides the original Peters-Belson method of Peters (1941) and Belson (1956). The usage is as similar as the <code>vc.pb</code> but the user should not put the time varying coefficients and a modifier variable.</p>
 <p>The user needs to define <code>group</code> properly to measure the disparity between two groups in <code>group</code> variable, there should be 2 levels for this variable.</p>
 <p>The selection of bandwidths is essential and important for the kernel regression. If there is nothing given as initial values, we get and use the default marginal bandwidth from the function <code><a href="https://rdrr.io/pkg/KernSmooth/man/dpill.html" class="external-link">KernSmooth::dpill</a></code>. For all models, <code>bandwidth_M</code>, <code>bandwidth_m</code>, <code>bandwidth_xM</code> and <code>bandwidth_xm</code> are essential. If <code>modifier</code> is not <code>NULL</code> and is a continuous variable, then <code>bandwidth_Z_M</code>, <code>bandwidth_Z_m</code>, <code>bandwidth_Z_xM</code> and <code>bandwidth_Z_xm</code> are needed more.</p>
 <p>Also, use needs to specify local time points (<code>local_time</code>) for the time-varying kernel regression. The function will automatically give the time points if there is nothing given. The local time points will be returned in the fitted object.</p>
+</div>
+<div class="section level4">
+<h4 id="pb">
+<code>pb</code><a class="anchor" aria-label="anchor" href="#pb"></a>
+</h4>
+<p><code>pb</code> function provides the original Peters-Belson method of Peters (1941) and Belson (1956). The usage is as similar as the <code>vc.pb</code> but the user should not put the time varying coefficients and a modifier variable.</p>
+</div>
 </div>
 <div class="section level3">
 <h3 id="developing">Developing<a class="anchor" aria-label="anchor" href="#developing"></a>
