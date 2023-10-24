@@ -689,7 +689,7 @@ time.disparity.varying.continuous = function(yM, xM, ym, xm, varying, varying_X,
   for(i in 1:length(qx))
   { # kernel part needs to be changed 3:42 / (08/21)
     kernel_M = dnorm((time_M_temp - qx[i])/bandwidth1_M_temp) * dnorm((varying_M_temp - varying_M_temp_mean)/bandwidth2_M_temp)
-    kernel_m = dnorm((time_m_temp - qx[i])/bandwidth1_m_temp) * dnorm((varying_m_temp - varying_m_temp_mean)/bandwidth2_m_temp)
+    kernel_m = dnorm((time_m_temp - qx[i])/bandwidth1_m_temp) * dnorm((varying_m_temp - varying_M_temp_mean)/bandwidth2_m_temp)
 
     hatcoeffM[i,] = lm(yM ~. , data = data.frame(yM = as.numeric(yM_temp), xM_temp),
                        weights=kernel_M)$coefficient
@@ -711,7 +711,7 @@ time.disparity.varying.continuous = function(yM, xM, ym, xm, varying, varying_X,
           bandwidth1_xm_temp <- ifelse(is.null(bandwidth1_xm), 3*KernSmooth::dpill(x = time_m_temp, y = xm_model[,j]), bandwidth1_xm[which(varying_coef_model_idx %in% j)])
           bandwidth2_xm_temp <- ifelse(is.null(bandwidth2_xm), 3*KernSmooth::dpill(x = varying_m_temp, y = xm_model[,j]), bandwidth2_xm[which(varying_coef_model_idx %in% j)])
         }
-        kernel_mm = dnorm((time_m_temp - qx[i])/bandwidth1_xm_temp) * dnorm((varying_m_temp - varying_M_temp_mean)/bandwidth2_xm_temp)
+        kernel_mm = dnorm((time_m_temp - qx[i])/bandwidth1_xm_temp) * dnorm((varying_m_temp - varying_m_temp_mean)/bandwidth2_xm_temp)
       }
 
       if(j %in% cat_idx){
@@ -738,8 +738,8 @@ time.disparity.varying.continuous = function(yM, xM, ym, xm, varying, varying_X,
   eq3 = hatcoeff1M[,1] - hatcoeff1m[,1]
   eq4 = diag((hatcoeff1M[,-1] - hatcoeff1m[,-1]) %*% (pred_X1M))
   eq5 = diag(hatcoeff1m[,-1]%*%((pred_X1M) - (pred_X1m)))
-  eq6 = - hatcoeff1m[,1] + hatcoeff2m[,1]
-  eq7 = - diag(hatcoeff1m[,-1]%*%(pred_X1m)) + diag(hatcoeff2m[,-1]%*%(pred_X2m))
+  eq6 = hatcoeff1m[,1] - hatcoeff2m[,1]
+  eq7 = diag(hatcoeff1m[,-1]%*%(pred_X1m)) - diag(hatcoeff2m[,-1]%*%(pred_X2m))
 
   result$Unexplained = eq3 + eq4
   result$Explained_X_given_Z = eq5
