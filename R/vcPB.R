@@ -727,7 +727,6 @@ time.disparity.varying.continuous = function(yM, xM, ym, xm, varying, varying_X,
 
   for(i in 1:length(qx))
   {
-    # kernel part needs to be changed 3:42 / (08/21)
     kernel_m = dnorm((time_m_temp - qx[i])/bandwidth1_m_temp) * dnorm((varying_m_temp - varying_M_temp_mean)/bandwidth2_m_temp)
     hatcoeffm[i,] = lm(ym ~. , data = data.frame(ym = as.numeric(ym_temp), xm_temp),
                        weights=kernel_m)$coefficient
@@ -739,8 +738,8 @@ time.disparity.varying.continuous = function(yM, xM, ym, xm, varying, varying_X,
   eq3 = hatcoeff1M[,1] - hatcoeff1m[,1]
   eq4 = diag((hatcoeff1M[,-1] - hatcoeff1m[,-1]) %*% (pred_X1M))
   eq5 = diag(hatcoeff1m[,-1]%*%((pred_X1M) - (pred_X1m)))
-  eq6 = hatcoeff1m[,1] - hatcoeff2m[,1]
-  eq7 = diag(hatcoeff1m[,-1]%*%(pred_X1m)) - diag(hatcoeff2m[,-1]%*%(pred_X2m))
+  eq6 = - hatcoeff1m[,1] + hatcoeff2m[,1]
+  eq7 = - diag(hatcoeff1m[,-1]%*%(pred_X1m)) + diag(hatcoeff2m[,-1]%*%(pred_X2m))
 
   result$Unexplained = eq3 + eq4
   result$Explained_X_given_Z = eq5
