@@ -727,7 +727,7 @@ time.disparity.varying.continuous = function(yM, xM, ym, xm, varying, varying_X,
 
   for(i in 1:length(qx))
   {
-    kernel_m = dnorm((time_m_temp - qx[i])/bandwidth1_m_temp) * dnorm((varying_m_temp - varying_M_temp_mean)/bandwidth2_m_temp)
+    kernel_m = dnorm((time_m_temp - qx[i])/bandwidth1_m_temp) * dnorm((varying_m_temp - varying_m_temp_mean)/bandwidth2_m_temp)
     hatcoeffm[i,] = lm(ym ~. , data = data.frame(ym = as.numeric(ym_temp), xm_temp),
                        weights=kernel_m)$coefficient
   }
