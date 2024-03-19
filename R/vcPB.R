@@ -667,6 +667,7 @@ time.disparity.varying.discrete = function(yM, xM, ym, xm, varying, varying_X,
                                            time_M, time_m,
                                            qx = seq(min(c(time_M, time_m)), max(c(time_M, time_m)),
                                                     length.out = 100),
+                                           subjectid_M, subjectid_m,
                                            bandwidth_M = NULL, bandwidth_m = NULL,
                                            bandwidth_xM = NULL, bandwidth_xm = NULL){
   varying_idx = which(names(xM) %in% varying)
