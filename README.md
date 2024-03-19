@@ -22,6 +22,7 @@ If `modifier` is `NULL` (the default setting is `NULL`) and at least a time-vary
 ```R
 vc.pb(formula = response ~ (time varying variable | time variable) + 
                 variable, 
+                id,
                 data = input_data, 
                 group = disparity_group)
 ```
@@ -30,6 +31,7 @@ If `modifier` is not `NULL` and is a discrete variable, and at least a time-vary
 vc.pb(formula = response ~ (time varying variable | time variable) + 
                 variable + 
                 discrete modifier, 
+                id,
                 data = input_data, 
                 group = disparity_group, 
                 modifier = "discrete modifier")
@@ -39,6 +41,7 @@ If `modifier` is not `NULL` and is a continuous variable, and at least a time-va
 vc.pb(formula = response ~ (time varying variable | time variable) + 
                 variable + 
                 continuous modifier, 
+                id,
                 data = input_data, 
                 group = disparity_group, 
                 modifier = "continuous modifier")
@@ -47,6 +50,7 @@ The type of modifier returns the different results. If there are more than one t
 ```R
 vc.pb(formula = response ~ (time varying variable1 | time variable) + 
                 (time varying variable2 | time variable) + 
+                id,
                 variable, 
                 data = input_data, 
                 group = disparity_group)
@@ -55,6 +59,7 @@ the user has to indicate whether the variable is time-varying or not. If there i
 ```R
 vc.pb(formula = response ~ variable + 
                 any modifier, 
+                id,
                 data = input_data, 
                 group = disparity_group, 
                 modifier = "any modifier")
@@ -62,6 +67,8 @@ vc.pb(formula = response ~ variable +
 If there is no modifier and time-varying variable, then the model is just the naive PB model. For this case, the user can use `pb` function instead.
 
 The user needs to define `group` properly to measure the disparity between two groups in `group` variable, there should be 2 levels for this variable. 
+
+The user needs to define `id` properly to have the exact identification on observations whether they are measured repeatedly across the time. 
 
 The selection of bandwidths is essential and important for the kernel regression. If there is nothing given as initial values, we get and use the default marginal bandwidth from the function `KernSmooth::dpill`. For all models, `bandwidth_M`, `bandwidth_m`, `bandwidth_xM` and `bandwidth_xm` are essential. If `modifier` is not `NULL` and is a continuous variable, then `bandwidth_Z_M`, `bandwidth_Z_m`, `bandwidth_Z_xM` and `bandwidth_Z_xm` are needed more.
 
