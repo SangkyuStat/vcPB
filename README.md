@@ -79,6 +79,7 @@ Also, use needs to specify local time points (`local_time`) for the time-varying
 
 ### Developing
 
+- The conditional version will be uploaded very soon.
 - The cross-validation function for choosing the bandwidths will be developed.
 - We are trying to develop other methods as well.
 
