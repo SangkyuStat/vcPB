@@ -1167,8 +1167,8 @@ time.disparity = function(yM, xM, ym, xm,
     for(j in 2:dim(xM_model)[2]){
       if(j %in% varying_coef_model_idx){
         if(i == 1){
-          bandwidth_xM_temp <- ifelse(is.null(bandwidth_xM), 3*KernSmooth::dpill(x = time_M_temp, y = xM_model[,j]), bandwidth_xM[which(varying_coef_model_idx %in% j)])
-          bandwidth_xm_temp <- ifelse(is.null(bandwidth_xm), 3*KernSmooth::dpill(x = time_m_temp, y = xm_model[,j]), bandwidth_xm[which(varying_coef_model_idx %in% j)])
+          bandwidth_xM_temp <- ifelse(is.null(bandwidth_xM), 1.5*KernSmooth::dpill(x = time_M_temp, y = xM_model[,j]), bandwidth_xM[which(varying_coef_model_idx %in% j)])
+          bandwidth_xm_temp <- ifelse(is.null(bandwidth_xm), 1.5*KernSmooth::dpill(x = time_m_temp, y = xm_model[,j]), bandwidth_xm[which(varying_coef_model_idx %in% j)])
 
           bandwidth_xM_seq <- c(bandwidth_xM_temp, bandwidth_xM_seq)
           bandwidth_xm_seq <- c(bandwidth_xm_temp, bandwidth_xm_seq)
@@ -1193,8 +1193,8 @@ time.disparity = function(yM, xM, ym, xm,
   hatcoeffM = matrix(0,length(qx), dim(xM_model)[2])
   hatcoeffm = matrix(0,length(qx), dim(xm_model)[2])
 
-  bandwidth_M_temp <- ifelse(is.null(bandwidth_M), 3*KernSmooth::dpill(x = time_M_temp, y = as.numeric(yM_temp)), bandwidth_M)
-  bandwidth_m_temp <- ifelse(is.null(bandwidth_m), 3*KernSmooth::dpill(x = time_m_temp, y = as.numeric(ym_temp)), bandwidth_m)
+  bandwidth_M_temp <- ifelse(is.null(bandwidth_M), 1.5*KernSmooth::dpill(x = time_M_temp, y = as.numeric(yM_temp)), bandwidth_M)
+  bandwidth_m_temp <- ifelse(is.null(bandwidth_m), 1.5*KernSmooth::dpill(x = time_m_temp, y = as.numeric(ym_temp)), bandwidth_m)
   for(i in 1:length(qx))
   {
     kernel_M = dnorm((time_M_temp - qx[i])/bandwidth_M_temp)
