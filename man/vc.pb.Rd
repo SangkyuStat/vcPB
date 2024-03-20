@@ -78,6 +78,22 @@ following components:
 The \code{vc.pb} offers Peters-Belson(PB) type of nonparametric varying-coefficient regression method which measures the disparity between a majority group
 and a minority group for the longitudinal data.
 }
+\examples{
+set.seed(1)
+n <- 100
+x1 <- rnorm(n)
+x2 <- rnorm(n)
+time <- rep(1:5, 20) + runif(n)
+y <- rnorm(n)
+sub_id <- rep(1:25, 1, each = 4)
+group <- rep(as.character(1:2), 25, each = 2)
+z <- as.character(rbinom(n, 1, prob = 0.5))
+
+data <- data.frame(y = y, x1 = x1, x2 = x2, z = z, group = group, time = time, sub_id = sub_id)
+
+fit <- vc.pb(y ~ (x1|time) + x2, data = data, id = sub_id, group = group)
+fit
+}
 \author{
 Sang Kyu Lee
 }

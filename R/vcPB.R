@@ -35,6 +35,21 @@
 #' \item{minor}{a minority group label.}
 #' \item{modfier, varying.type}{the modifier variable and the type of the modifier variable, these components are given only when \code{varying} is not null.}
 #' \item{bandwidths}{various corresponding bandwidths. Please see the details or the attached reference for more information.}
+#' @examples
+#' set.seed(1)
+#' n <- 100
+#' x1 <- rnorm(n)
+#' x2 <- rnorm(n)
+#' time <- rep(1:5, 20) + runif(n)
+#' y <- rnorm(n)
+#' sub_id <- rep(1:25, 1, each = 4)
+#' group <- rep(as.character(1:2), 25, each = 2)
+#' z <- as.character(rbinom(n, 1, prob = 0.5))
+#'
+#' data <- data.frame(y = y, x1 = x1, x2 = x2, z = z, group = group, time = time, sub_id = sub_id)
+#'
+#' fit <- vc.pb(y ~ (x1|time) + x2, data = data, id = sub_id, group = group)
+#' fit
 #' @importFrom rlist list.append
 #' @importFrom KernSmooth dpill
 #' @importFrom stats complete.cases dnorm glm lm model.extract model.matrix model.response na.pass model.frame quasibinomial
@@ -133,6 +148,7 @@ vc.pb <-function(formula, group, data, id,
                              ym = ym, xm = xm,
                              time_M = timeM, time_m = timem,
                              qx = local_time,
+                             varying = modifier,
                              subjectid_M = subjectidM,
                              subjectid_m = subjectidm,
                              varying_X = varyingX,
@@ -140,7 +156,7 @@ vc.pb <-function(formula, group, data, id,
                              bandwidth_M = bandwidth_M,
                              bandwidth_xm = bandwidth_xm,
                              bandwidth_xM = bandwidth_xM,
-                             detail = F)
+                             detail = detail)
   } else if (!is.null(modifier)){
     # changing
     modm <- unlist(as.vector(xm[modifier]))
