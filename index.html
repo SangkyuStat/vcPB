@@ -96,27 +96,24 @@
 <span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>                <span class="at">group =</span> disparity_group)</span></code></pre></div>
 <p>If <code>modifier</code> is not <code>NULL</code> and is a discrete variable, and at least a time-varying variable exists, then the modifiable varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">vc.pb</span>(<span class="at">formula =</span> response <span class="sc">~</span> (time varying variable <span class="sc">|</span> time variable) <span class="sc">+</span> </span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>                variable <span class="sc">+</span> </span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>                discrete modifier, </span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>                id,</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>                <span class="at">data =</span> input_data, </span>
-<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                <span class="at">group =</span> disparity_group, </span>
-<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>                <span class="at">modifier =</span> <span class="st">"discrete modifier"</span>)</span></code></pre></div>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>                variable <span class="sc">+</span> discrete modifier, </span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>                id,</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>                <span class="at">data =</span> input_data, </span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>                <span class="at">group =</span> disparity_group, </span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                <span class="at">modifier =</span> <span class="st">"discrete modifier"</span>)</span></code></pre></div>
 <p>If <code>modifier</code> is not <code>NULL</code> and is a continuous variable, and at least a time-varying variable exists, then the simple varying-coefficient Peters-Belson method using a gaussian kernel regression can be performed as below:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">vc.pb</span>(<span class="at">formula =</span> response <span class="sc">~</span> (time varying variable <span class="sc">|</span> time variable) <span class="sc">+</span> </span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                variable <span class="sc">+</span> </span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                continuous modifier, </span>
-<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                id,</span>
-<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                <span class="at">data =</span> input_data, </span>
-<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                <span class="at">group =</span> disparity_group, </span>
-<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>                <span class="at">modifier =</span> <span class="st">"continuous modifier"</span>)</span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>                variable <span class="sc">+</span> continuous modifier, </span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>                id,</span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>                <span class="at">data =</span> input_data, </span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>                <span class="at">group =</span> disparity_group, </span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                <span class="at">modifier =</span> <span class="st">"continuous modifier"</span>)</span></code></pre></div>
 <p>The type of modifier returns the different results. If there are more than one time-varying variables, the user can perform the function as below:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">vc.pb</span>(<span class="at">formula =</span> response <span class="sc">~</span> (time varying variable1 <span class="sc">|</span> time variable) <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>                (time varying variable2 <span class="sc">|</span> time variable) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>                (time varying variable2 <span class="sc">|</span> time variable) <span class="sc">+</span> variable,</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                id,</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                variable, </span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>                <span class="at">data =</span> input_data, </span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>                <span class="at">group =</span> disparity_group)</span></code></pre></div>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                <span class="at">data =</span> input_data, </span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>                <span class="at">group =</span> disparity_group)</span></code></pre></div>
 <!--the user has to indicate whether the variable is time-varying or not. If there is no time-varying variable, then user can perform the function as below:
 ```R
 vc.pb(formula = response ~ variable + 
