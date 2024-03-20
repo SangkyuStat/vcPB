@@ -1,6 +1,6 @@
 Package: vcPB
 Type: Package
-Title: Longitudinal Varying-Coefficient Groupwise Disparity Model based on Peters-Belson Estimation
+Title: Longitudinal Varying-Coefficient Groupwise Disparity Model Based on Peters-Belson Estimation
 Version: 1.1.1
 Authors@R: c(
     person("Sang Kyu", "Lee", role = c("aut", "cre"), email = "lsk0816@gmail.com"),
