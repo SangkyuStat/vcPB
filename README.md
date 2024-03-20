@@ -13,6 +13,12 @@ The current version can be installed from source using the package `devtools`
 devtools::install_github("SangkyuStat/vcPB")
 ```
 
+It can also be found on CRAN
+```R
+install.packages("vcPB")
+```
+
+
 ### Usage Examples
 
 #### - `vc.pb` function 
@@ -55,7 +61,7 @@ vc.pb(formula = response ~ (time varying variable1 | time variable) +
                 data = input_data, 
                 group = disparity_group)
 ```
-the user has to indicate whether the variable is time-varying or not. If there is no time-varying variable, then user can perform the function as below:
+<!--the user has to indicate whether the variable is time-varying or not. If there is no time-varying variable, then user can perform the function as below:
 ```R
 vc.pb(formula = response ~ variable + 
                 any modifier, 
@@ -63,7 +69,7 @@ vc.pb(formula = response ~ variable +
                 data = input_data, 
                 group = disparity_group, 
                 modifier = "any modifier")
-```
+```-->
 If there is no modifier and time-varying variable, then the model is just the naive PB model. For this case, the user can use `pb` function instead.
 
 The user needs to define `group` properly to measure the disparity between two groups in `group` variable, there should be 2 levels for this variable. 
