@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Longitudinal PB Varying-Coefficient Groupwise Disparity Model • vcPB</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="bootstrap-toc.css">
 <script src="bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -69,8 +69,14 @@
 <div class="page-header"><h1 id="vcpb-varying-coefficient-peters-belson-method-for-longitudinal-data">vcPB: Varying Coefficient Peters-Belson Method for Longitudinal Data<a class="anchor" aria-label="anchor" href="#vcpb-varying-coefficient-peters-belson-method-for-longitudinal-data"></a>
 </h1></div>
 <p><a href="https://github.com/SangkyuStat/vcPB/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/SangkyuStat/vcPB/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a></p>
-<p>A package for estimating the disparity between a majority group and minority group based on the extended model of the Peters-Belson method. Our model is the first extension of Peters-Belson method to the longitudinal data.</p>
-<p>Furthermore, our method can set a modifiable variable to find the complicated association between other variables and the modifiable variable.</p>
+<p>This R package, vcPB, implements a longitudinal disparity decomposition method. It breaks down disparities into three components:</p>
+<ol style="list-style-type: decimal">
+<li>The explained disparity linked to differences in the conditional distribution of explanatory variables, assuming identical modifier distributions between majority and minority groups.</li>
+<li>The explained disparity arising from unequal distributions of the modifier and its interaction with covariates.</li>
+<li>The unexplained disparity.</li>
+</ol>
+<p>Our method serves as a dynamic alternative to the traditional Peters-Belson (PB) decomposition approach. It addresses both the potential reduction in disparities if minority groups’ covariate distributions were aligned with those of the majority, and the changing nature of disparities over time.</p>
+<p>Our package also provides the longitudinal PB model without the modifier and original PB model as well.</p>
 <div class="section level3">
 <h3 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h3>
@@ -110,7 +116,7 @@
 <span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>                <span class="at">modifier =</span> <span class="st">"continuous modifier"</span>)</span></code></pre></div>
 <p>The type of modifier returns the different results. If there are more than one time-varying variables, the user can perform the function as below:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">vc.pb</span>(<span class="at">formula =</span> response <span class="sc">~</span> (time varying variable1 <span class="sc">|</span> time variable) <span class="sc">+</span> </span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>                (time varying variable2 <span class="sc">|</span> time variable) <span class="sc">+</span> variable,</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>                (time varying variable2 <span class="sc">|</span> time variable) <span class="sc">+</span> other variable,</span>
 <span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>                id,</span>
 <span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>                <span class="at">data =</span> input_data, </span>
 <span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>                <span class="at">group =</span> disparity_group)</span></code></pre></div>
@@ -149,6 +155,7 @@ vc.pb(formula = response ~ variable +
 </h3>
 <p>Peters, C. C. (1941) A method of matching groups for experiment with no loss of population. Journal of Educational Research, 34, 606-612.</p>
 <p>Belson, W. A. (1956) A Technique for Studying the Effects of a Television Broadcast. JRSSC, 5(3), 195-202.</p>
+<p>Lee, S. K., Kim, S., Kim, M.-O., Grantz, K. L., Hong, H. G. (2024) Decomposition of Longitudinal Disparities: An Application to the Fetal Growth-Singletons Study. <strong>submitted</strong>.</p>
 </div>
 </div>
   </div>
@@ -157,6 +164,7 @@ vc.pb(formula = response ~ variable +
     <div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=vcPB" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/SangkyuStat/vcPB/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/SangkyuStat/vcPB/issues" class="external-link">Report a bug</a></li>
 </ul>
@@ -200,7 +208,7 @@ vc.pb(formula = response ~ variable +
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.8.</p>
 </div>
 
       </footer>
