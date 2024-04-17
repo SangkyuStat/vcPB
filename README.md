@@ -2,9 +2,15 @@
 
 [![R-CMD-check](https://github.com/SangkyuStat/vcPB/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/SangkyuStat/vcPB/actions/workflows/R-CMD-check.yaml)
 
-A package for estimating the disparity between a majority group and minority group based on the extended model of the Peters-Belson method. Our model is the first extension of Peters-Belson method to the longitudinal data. 
+This R package, vcPB, implements a longitudinal disparity decomposition method. It breaks down disparities into three components:
 
-Furthermore, our method can set a modifiable variable to find the complicated association between other variables and the modifiable variable.
+1. The explained disparity linked to differences in the conditional distribution of explanatory variables, assuming identical modifier distributions between majority and minority groups.
+2. The explained disparity arising from unequal distributions of the modifier and its interaction with covariates.
+3. The unexplained disparity.
+ 
+Our method serves as a dynamic alternative to the traditional Peters-Belson (PB) decomposition approach. It addresses both the potential reduction in disparities if minority groups' covariate distributions were aligned with those of the majority, and the changing nature of disparities over time.
+
+Our package also provides the longitudinal PB model without the modifier and original PB model as well.
 
 ### Installation
 
@@ -53,7 +59,7 @@ vc.pb(formula = response ~ (time varying variable | time variable) +
 The type of modifier returns the different results. If there are more than one time-varying variables, the user can perform the function as below:
 ```R
 vc.pb(formula = response ~ (time varying variable1 | time variable) + 
-                (time varying variable2 | time variable) + variable,
+                (time varying variable2 | time variable) + other variable,
                 id,
                 data = input_data, 
                 group = disparity_group)
@@ -92,3 +98,5 @@ Peters, C. C. (1941) A method of matching groups for experiment with no loss of 
 
 Belson, W. A. (1956) A Technique for Studying the Effects of a Television 
 Broadcast.  JRSSC, 5(3), 195-202.
+
+Lee, S. K., Kim, S., Kim, M.-O., Grantz, K. L., Hong, H. G. (2024) Decomposition of Longitudinal Disparities: An Application to the Fetal Growth-Singletons Study. **submitted**.
