@@ -99,4 +99,4 @@ Peters, C. C. (1941) A method of matching groups for experiment with no loss of 
 Belson, W. A. (1956) A Technique for Studying the Effects of a Television 
 Broadcast.  JRSSC, 5(3), 195-202.
 
-Lee, S. K., Kim, S., Kim, M.-O., Grantz, K. L., Hong, H. G. (2024) Decomposition of Longitudinal Disparities: An Application to the Fetal Growth-Singletons Study. **submitted**.
+Lee, S. K., Kim, S., Kim, M.-O., Grantz, K. L., and Hong, H. G. (2024) Decomposition of Longitudinal Disparities: An Application to the Fetal Growth-Singletons Study. *submitted*.
